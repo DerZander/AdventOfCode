@@ -15,7 +15,7 @@ def get_day_name(value):
 
 
 class AdventHandler:
-    def __init__(self, day=1, year=2022, is_testing=False):
+    def __init__(self, day=0, year=0, is_testing=False):
         load_dotenv()
         self.day = day
         self.year = year
@@ -23,6 +23,13 @@ class AdventHandler:
         self.result_1 = 0
         self.result_2 = 0
         self.file_path = self.get_file_path()
+        self.setup()
+
+    def setup(self):
+        if self.day == 0:
+            self.day = int(os.getcwd().split("\\")[-1].split("_")[0])
+        if self.year == 0:
+            self.year = int(os.getcwd().split("\\")[-2])
 
     def get_file(self):
         return self.file_path
@@ -73,7 +80,6 @@ class AdventHandler:
         path = os.path.join(os.getcwd(), f"{self.year}/{self.day:02}_day")
         if str(self.year) in path:
             path = f"{os.getcwd()}"
-        print(path)
         with open(f"{path}/result.json", "w") as f:
             json.dump({'answer_1': self.result_1, 'answer_2': self.result_2}, f)
         return True
@@ -85,6 +91,6 @@ class AdventHandler:
 
 
 if __name__ == "__main__":
-    ah = AdventHandler()
+    ah = AdventHandler(day=1, year=2022, is_testing=True)
     ah.create_days()
     # ah.create_current_day()
