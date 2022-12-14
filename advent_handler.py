@@ -84,6 +84,7 @@ class AdventHandler:
             path = f"{os.getcwd()}"
         with open(f"{path}/result.json", "w") as f:
             json.dump({'answer_1': self.result_1, 'answer_2': self.result_2}, f)
+        self.update_readme(self.day)
         return True
 
     def create_current_day(self):
@@ -91,8 +92,30 @@ class AdventHandler:
         year = int(datetime.datetime.now().strftime("%y"))
         self.create_day(day=day, year=year)
 
+    def update_readme(self, day, year):
+        rd_list = {}
+        rm = open("README.md", "r").read()
+        # for line in open("README.md", "r").readlines():
+        #     if "###" in line:
+        #         rd_list[int(line.split(" ")[1].split("\n")[0])] = []
+        #     if "Day" in line:
+        #         print(line.split(" "))
+        #         if len(line.split(" ")) > 4:
+        #             d = {line.split(" ")[-1].split("\n")[0]: line.split(" ")[1 - 2]}
+        #         else:
+        #             d = {line.split(" ")[-1].split("\n")[0]: line.split(" ")[1]}
+        #         print(d)
+        if not f"- [x] Day {day}" in rm:
+            with open("README.md", "a") as f:
+                f.write(f"- [x] Day {day}\n")
+        print(rd_list)
+
+    def create_readme(self):
+        with open("README.md", "a") as f:
+            f.write("#")
+
 
 if __name__ == "__main__":
     ah = AdventHandler(day=1, year=2022, is_testing=True)
-    ah.create_day(4,2022)
+    ah.update_readme(5, 2022)
     # ah.create_current_day()
