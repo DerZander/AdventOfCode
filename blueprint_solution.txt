@@ -4,8 +4,9 @@ from advent_handler import AdventHandler
 
 
 class Solution(AdventHandler):
-    def __init__(self, day, year, is_testing):
+    def __init__(self, day=0, year=0, is_testing=False):
         super().__init__(day, year, is_testing)
+        self.game = 0
 
     def answer_one(self):
         self.result_1 = 0
@@ -16,9 +17,7 @@ class Solution(AdventHandler):
 
 if __name__ == "__main__":
     print(f"Start of: {__file__}")
-    day_int = int(os.getcwd().split("\\")[-1].split("_")[0])
-    year_int = int(os.getcwd().split("\\")[-2])
-    s = Solution(day_int, year_int, False)
+    s = Solution()
     s.answer_one()
     s.answer_two()
     s.set_answers()
