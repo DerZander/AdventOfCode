@@ -6,7 +6,6 @@ from advent_handler import AdventHandler
 class Solution(AdventHandler):
     def __init__(self, day=0, year=0, is_testing=False):
         super().__init__(day, year, is_testing)
-        self.game = 0
 
     def answer_one(self):
         self.result_1 = 0

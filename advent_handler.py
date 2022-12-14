@@ -59,7 +59,9 @@ class AdventHandler:
             os.mkdir(path)
         open(f"{path}/__init__.py", "w")
 
-        # print(open(f"{path}/solution.py", "r").read())
+        if not os.path.exists(f"{path}/solution.py"):
+            open(f"{path}/solution.py", "w").close()
+
         if len(open(f"{path}/solution.py", "r").readlines()) == 0:
             with open(f"{path}/solution.py", "w") as f:
                 blueprint = open("blueprint_solution.txt", "r").read()
@@ -92,5 +94,5 @@ class AdventHandler:
 
 if __name__ == "__main__":
     ah = AdventHandler(day=1, year=2022, is_testing=True)
-    ah.create_days()
+    ah.create_day(4,2022)
     # ah.create_current_day()
